@@ -1,0 +1,46 @@
+github action step :
+1. buat repository
+2. buat file deploy.yml di folder .github/workflows
+3. isi kode di file deploy.yml
+```begin yaml```
+name: Deploy to IDCloudHost
+
+on:
+  push:
+    branches:
+      - main # Ubah sesuai dengan branch Anda
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Deploy to Server
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd /home/arbipram/github-action-test
+          git pull origin main
+```end yaml```
+
+4. buat secret di repository -> settings -> secrets and variable -> actions -> new repository secret
+5. isi secret dengan SSH_HOST, SSH_USER, SSH_KEY
+    SSH_HOST adalah alamat IP atau domain dari server Anda.
+    SSH_USER adalah username dari server Anda.
+    SSH_KEY adalah private key yang digunakan untuk mengakses server Anda. (komputer local anda)
+6. daftarkan public key dari local ke server, caranya :
+    6.1 Buka C:\Users\{username}\.ssh\id_rsa.pub 
+    6.2 Copy isi file tersebut
+    6.3 Masuk ke server Anda dengan perintah `ssh username@ip-server`
+    6.4 Buka file ~/.ssh/authorized_keys, dan paste isi file id_rsa.pub yang sudah di-copy tadi kemuadian save
+    6.6 ketikan command chmod 700 ~/.ssh pada server
+    6.7 ketikan command chmod 600 ~/.ssh/authorized_keys pada server
+    6.8 Coba jalankan perintah `ssh username@ip-server` tanpa memasukkan password, jika berhasil berarti public key sudah berhasil di daftarkan
+7. push file deploy.yml ke repository
+8. cek di tab actions di repository, jika sudah berhasil maka akan ada notifikasi bahwa action berhasil dijalankan
