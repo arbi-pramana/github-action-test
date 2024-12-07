@@ -5,6 +5,7 @@ github action step :
     2.2 ketikkan perintah ssh-keygen -t rsa -b 4096 -C "your-email@example.com"
     2.3 buka file ~/.ssh/id_rsa.pub
     2.4 copy isi file tersebut ke github -> settings -> SSH and GPG keys -> new SSH key
+    2.5 ssh -T git@github.com untuk mengecek apakah ssh key sudah berhasil di tambahkan
 3. buat file deploy.yml di folder .github/workflows
 4. isi kode di file deploy.yml
 ```begin yaml```
