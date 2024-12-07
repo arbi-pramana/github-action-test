@@ -38,7 +38,7 @@ jobs:
 6. isi secret dengan SSH_HOST, SSH_USER, SSH_KEY
     SSH_HOST adalah alamat IP atau domain dari server Anda.
     SSH_USER adalah username dari server Anda.
-    SSH_KEY adalah private key yang digunakan untuk mengakses server Anda. (komputer local anda)
+    SSH_KEY adalah private key (id_rsa) dari komputer local anda yang digunakan untuk mengakses server.
 7. daftarkan public key dari local ke server, caranya :
     7.1 Buka C:\Users\{username}\.ssh\id_rsa.pub 
     7.2 Copy isi file tersebut
@@ -49,3 +49,4 @@ jobs:
     7.8 Coba jalankan perintah `ssh username@ip-server` tanpa memasukkan password, jika berhasil berarti public key sudah berhasil di daftarkan
 8. push file deploy.yml ke repository
 9. cek di tab actions di repository, jika sudah berhasil maka akan ada notifikasi bahwa action berhasil dijalankan
+10. cek di server apakah file sudah terupdate atau belum
