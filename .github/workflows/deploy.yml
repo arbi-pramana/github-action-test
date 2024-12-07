@@ -1,0 +1,24 @@
+name: Deploy to IDCloudHost
+
+on:
+  push:
+    branches:
+      - main # Ubah sesuai dengan branch Anda
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Deploy to Server
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd /path/to/your/project
+          git pull origin main
