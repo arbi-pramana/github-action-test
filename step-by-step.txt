@@ -1,7 +1,12 @@
 github action step :
 1. buat repository
-2. buat file deploy.yml di folder .github/workflows
-3. isi kode di file deploy.yml
+2. tambahkan ssh key ke github, caranya :
+    2.1 buka terminal
+    2.2 ketikkan perintah ssh-keygen -t rsa -b 4096 -C "your-email@example.com"
+    2.3 buka file ~/.ssh/id_rsa.pub
+    2.4 copy isi file tersebut ke github -> settings -> SSH and GPG keys -> new SSH key
+3. buat file deploy.yml di folder .github/workflows
+4. isi kode di file deploy.yml
 ```begin yaml```
 name: Deploy to IDCloudHost
 
@@ -29,18 +34,18 @@ jobs:
           git pull origin main
 ```end yaml```
 
-4. buat secret di repository -> settings -> secrets and variable -> actions -> new repository secret
-5. isi secret dengan SSH_HOST, SSH_USER, SSH_KEY
+5. buat secret di repository -> settings -> secrets and variable -> actions -> new repository secret
+6. isi secret dengan SSH_HOST, SSH_USER, SSH_KEY
     SSH_HOST adalah alamat IP atau domain dari server Anda.
     SSH_USER adalah username dari server Anda.
     SSH_KEY adalah private key yang digunakan untuk mengakses server Anda. (komputer local anda)
-6. daftarkan public key dari local ke server, caranya :
-    6.1 Buka C:\Users\{username}\.ssh\id_rsa.pub 
-    6.2 Copy isi file tersebut
-    6.3 Masuk ke server Anda dengan perintah `ssh username@ip-server`
-    6.4 Buka file ~/.ssh/authorized_keys, dan paste isi file id_rsa.pub yang sudah di-copy tadi kemuadian save
-    6.6 ketikan command chmod 700 ~/.ssh pada server
-    6.7 ketikan command chmod 600 ~/.ssh/authorized_keys pada server
-    6.8 Coba jalankan perintah `ssh username@ip-server` tanpa memasukkan password, jika berhasil berarti public key sudah berhasil di daftarkan
-7. push file deploy.yml ke repository
-8. cek di tab actions di repository, jika sudah berhasil maka akan ada notifikasi bahwa action berhasil dijalankan
+7. daftarkan public key dari local ke server, caranya :
+    7.1 Buka C:\Users\{username}\.ssh\id_rsa.pub 
+    7.2 Copy isi file tersebut
+    7.3 Masuk ke server Anda dengan perintah `ssh username@ip-server`
+    7.4 Buka file ~/.ssh/authorized_keys, dan paste isi file id_rsa.pub yang sudah di-copy tadi kemuadian save
+    7.6 ketikan command chmod 700 ~/.ssh pada server
+    7.7 ketikan command chmod 600 ~/.ssh/authorized_keys pada server
+    7.8 Coba jalankan perintah `ssh username@ip-server` tanpa memasukkan password, jika berhasil berarti public key sudah berhasil di daftarkan
+8. push file deploy.yml ke repository
+9. cek di tab actions di repository, jika sudah berhasil maka akan ada notifikasi bahwa action berhasil dijalankan
