@@ -20,5 +20,5 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          cd /path/to/your/project
+          cd /home/arbipram/github-action-test
           git pull origin main
