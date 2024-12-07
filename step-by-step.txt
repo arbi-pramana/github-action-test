@@ -43,9 +43,9 @@ jobs:
     7.1 Buka C:\Users\{username}\.ssh\id_rsa.pub 
     7.2 Copy isi file tersebut
     7.3 Masuk ke server Anda dengan perintah `ssh username@ip-server`
-    7.4 Buka file ~/.ssh/authorized_keys, dan paste isi file id_rsa.pub yang sudah di-copy tadi kemuadian save
-    7.6 ketikan command chmod 700 ~/.ssh pada server
-    7.7 ketikan command chmod 600 ~/.ssh/authorized_keys pada server
+    7.4 Buka file /home/{username}/.ssh/authorized_keys, dan paste isi file id_rsa.pub yang sudah di-copy tadi kemuadian save
+    7.6 ketikan command chmod 700 /home/{username}/.ssh pada server
+    7.7 ketikan command chmod 600 /home/{username}/.ssh/authorized_keys pada server
     7.8 Coba jalankan perintah `ssh username@ip-server` tanpa memasukkan password, jika berhasil berarti public key sudah berhasil di daftarkan
 8. push file deploy.yml ke repository
 9. cek di tab actions di repository, jika sudah berhasil maka akan ada notifikasi bahwa action berhasil dijalankan
